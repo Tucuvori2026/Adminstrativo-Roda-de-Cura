@@ -1,50 +1,663 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Administração | Roda de Cura</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Administração | Roda de Cura · TUCUVORI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--g:#285c4d;--g2:#397661;--gold:#d2b878;--ink:#263f37;--muted:#788b82;--bg:#f5f7f3;--line:#e3eae3;--red:#a85d59;--shadow:0 5px 22px #2c4b390b}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#edf4ee,#f5f7f3 300px);font:14px/1.6 'DM Sans',sans-serif;color:var(--ink)}header{background:linear-gradient(145deg,#214d40,#326b56 75%,#477d65);color:#fff;padding:25px max(18px,calc((100% - 1180px)/2));border-bottom:2px solid var(--gold);border-radius:0 0 24px 24px}header small{color:#e9d9a9;letter-spacing:.2em;font-weight:800}h1{font:800 clamp(24px,4vw,32px) Manrope;margin:8px 0}header p{margin:0;color:#e1ede5}main{max-width:1180px;margin:22px auto;padding:0 16px 40px}.panel{background:#ffffffed;border:1px solid var(--line);border-radius:20px;padding:20px;margin:14px 0;box-shadow:var(--shadow)}h2{font:800 19px Manrope;color:var(--g);margin:0 0 14px}h3{margin:0 0 8px;font:700 16px Manrope}.muted{color:var(--muted);font-size:13px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.stat{background:linear-gradient(145deg,#f9fbf8,#f0f5f0);border:1px solid var(--line);border-radius:16px;padding:15px;min-width:0}.stat span{display:block;color:var(--muted);font-size:12px}.stat strong{font:800 27px Manrope;color:var(--g);overflow-wrap:anywhere}.row{display:flex;gap:12px;flex-wrap:wrap}.row>*{flex:1;min-width:180px}label{display:block;font-size:12px;font-weight:700;color:#466457;margin:11px 0 6px}input,textarea,select{width:100%;min-height:46px;border:1px solid #dfe8df;border-radius:13px;padding:12px 13px;background:#fbfcfa;color:var(--ink);font:inherit}textarea{min-height:95px;resize:vertical}input:focus,textarea:focus,select:focus{outline:none;border-color:#83ab93;box-shadow:0 0 0 4px #7fa88d1c}button{border:0;border-radius:13px;background:var(--g);color:white;padding:12px 16px;min-height:44px;font:700 13px 'DM Sans';cursor:pointer}button:hover{background:var(--g2)}button:disabled{opacity:.55;cursor:wait}.secondary{background:#edf4ee;color:var(--g);border:1px solid #e0e9e0}.danger{background:#fff5f3;color:var(--red);border:1px solid #f0e1dd}.gold{background:var(--gold);color:#263f37}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.actions button{flex:0 0 auto}.tabs{display:flex;gap:7px;flex-wrap:wrap;padding:6px;background:#eaf0e9;border-radius:15px;margin:16px 0}.tabs button{background:transparent;color:#5b7467}.tabs button[aria-selected=true]{background:var(--g);color:#fff}.tab[hidden],.hidden{display:none!important}.notice{padding:12px 14px;border-radius:13px;background:#edf6ef;color:#426b52;border:1px solid #dceade;margin:12px 0}.notice.error{background:#fff2f0;color:var(--red);border-color:#f0dcd8}.tablewrap{overflow:auto;border:1px solid var(--line);border-radius:14px}table{width:100%;border-collapse:collapse;min-width:700px}th,td{text-align:left;padding:11px 12px;border-bottom:1px solid #edf1ec;font-size:13px;vertical-align:top}th{background:#f0f5f1;color:var(--g)}.card{border:1px solid var(--line);border-radius:15px;padding:14px;margin:10px 0;background:white}.bar{height:8px;background:#edf1eb;border-radius:99px;overflow:hidden;margin:10px 0}.bar i{display:block;height:100%;background:linear-gradient(90deg,#609578,#cdb778)}.pill{display:inline-block;padding:4px 9px;border-radius:99px;background:#edf4ed;color:#4c735d;font-size:11px;font-weight:800}.footer{text-align:center;color:#47705b;padding:22px;font-weight:700}
-@media(max-width:720px){main{padding:0 11px 28px;margin:14px auto}.panel{padding:15px;border-radius:17px}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.stat{padding:12px}.stat strong{font-size:23px}.row{display:block}.row>*{min-width:100%}.tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.tabs button{padding:10px 6px;font-size:12px}.actions button{flex:1}.mobile-stack{display:block}}
-@media(max-width:360px){.grid{grid-template-columns:1fr}.stat{display:flex;justify-content:space-between;align-items:center}.stat strong{font-size:21px}}
-@media print{header,.tabs,.actions{display:none!important}body{background:#fff}.panel{box-shadow:none;break-inside:avoid}}
+  :root {
+    --g: #285c4d;
+    --g2: #397661;
+    --g-light: #edf4ee;
+    --gold: #d2b878;
+    --gold-dark: #9e8344;
+    --ink: #223831;
+    --muted: #687d74;
+    --bg: #f4f7f4;
+    --card: #ffffff;
+    --line: #dfe7e0;
+    --red: #b34b46;
+    --red-bg: #fff3f2;
+    --shadow: 0 6px 24px rgba(34, 56, 49, 0.06);
+  }
+
+  * { box-sizing: border-box; }
+  
+  body {
+    margin: 0;
+    background: var(--bg);
+    font: 14px/1.55 'DM Sans', sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Cabeçalho Principal */
+  header {
+    background: linear-gradient(135deg, #1e463a, #2d6250 70%, #3f7761);
+    color: #fff;
+    padding: 24px max(18px, calc((100% - 1140px)/2)) 36px;
+    border-bottom: 3px solid var(--gold);
+  }
+  header small {
+    color: #e9d9a9;
+    letter-spacing: 0.22em;
+    font-weight: 800;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  header h1 {
+    font: 800 clamp(22px, 3.5vw, 30px) 'Manrope', sans-serif;
+    margin: 6px 0 4px;
+  }
+  header p {
+    margin: 0;
+    color: #dcebe2;
+    font-size: 14px;
+  }
+
+  main {
+    max-width: 1140px;
+    margin: -20px auto 40px;
+    padding: 0 16px;
+  }
+
+  /* Barra Superior da Edição Ativa */
+  .context-bar {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .context-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 220px;
+  }
+  .context-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted);
+  }
+  .edition-selector-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .edition-select {
+    font: 800 17px 'Manrope', sans-serif;
+    color: var(--g);
+    border: 1px solid var(--line);
+    background: var(--g-light);
+    border-radius: 11px;
+    padding: 8px 14px;
+    min-height: 42px;
+    cursor: pointer;
+    width: auto;
+    min-width: 240px;
+  }
+  .sync-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ccc;
+  }
+  .dot.online { background: #2e9e66; box-shadow: 0 0 0 3px rgba(46, 158, 102, 0.2); }
+  .dot.error { background: var(--red); }
+
+  /* Botões */
+  button {
+    border: 0;
+    border-radius: 11px;
+    background: var(--g);
+    color: #fff;
+    padding: 10px 16px;
+    min-height: 42px;
+    font: 700 13px 'DM Sans', sans-serif;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+  }
+  button:hover:not(:disabled) { background: var(--g2); transform: translateY(-1px); }
+  button:disabled { opacity: 0.55; cursor: not-allowed; }
+  button.secondary { background: var(--g-light); color: var(--g); border: 1px solid #d5e3d7; }
+  button.secondary:hover:not(:disabled) { background: #e2ede4; }
+  button.gold { background: var(--gold); color: #223831; }
+  button.gold:hover:not(:disabled) { background: #c7ab66; }
+  button.danger { background: var(--red-bg); color: var(--red); border: 1px solid #f2d5d3; }
+  button.danger:hover:not(:disabled) { background: #fae4e2; }
+  button.sm { min-height: 34px; padding: 6px 12px; font-size: 12px; border-radius: 9px; }
+
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+  /* Cards de Métricas (KPIs) */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .kpi {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+  }
+  .kpi span {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .kpi strong {
+    font: 800 24px 'Manrope', sans-serif;
+    color: var(--g);
+    display: block;
+  }
+  .kpi small {
+    display: block;
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* Navegação por Abas */
+  .tabs {
+    display: flex;
+    gap: 6px;
+    padding: 6px;
+    background: #e6ede6;
+    border-radius: 14px;
+    margin-bottom: 18px;
+    overflow-x: auto;
+  }
+  .tabs button {
+    background: transparent;
+    color: #516b5f;
+    flex: 1;
+    white-space: nowrap;
+    min-height: 40px;
+  }
+  .tabs button:hover { background: rgba(255,255,255,0.5); transform: none; }
+  .tabs button[aria-selected="true"] {
+    background: var(--card);
+    color: var(--g);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  /* Painéis e Formulários */
+  .panel {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 22px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+  }
+  .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .panel-header h2 {
+    font: 800 18px 'Manrope', sans-serif;
+    color: var(--g);
+    margin: 0;
+  }
+
+  .row { display: flex; gap: 14px; flex-wrap: wrap; }
+  .row > * { flex: 1; min-width: 200px; }
+
+  label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: #3d574b;
+    margin: 12px 0 5px;
+  }
+  input, textarea, select {
+    width: 100%;
+    min-height: 44px;
+    border: 1px solid #d5e0d6;
+    border-radius: 11px;
+    padding: 10px 13px;
+    background: #fafcfa;
+    color: var(--ink);
+    font: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  textarea { min-height: 90px; resize: vertical; }
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--g);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(40, 92, 77, 0.12);
+  }
+
+  /* Badges / Pílulas */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 99px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .badge.open { background: #e3f5ea; color: #1f6e43; }
+  .badge.closed { background: #f2e8e8; color: #9c3d38; }
+  .badge.full { background: #fdf3dc; color: #8c6819; }
+  .badge.neutral { background: #edf2ee; color: #4d665a; }
+
+  /* Barra de Progresso */
+  .bar {
+    height: 10px;
+    background: #eaeff0;
+    border-radius: 99px;
+    overflow: hidden;
+    margin: 12px 0;
+  }
+  .bar i {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--g), var(--gold));
+    transition: width 0.3s ease;
+  }
+
+  /* Cards de Lista (Edições e Participantes) */
+  .item-card {
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: #fcfdfc;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 14px;
+    flex-wrap: wrap;
+    transition: border-color 0.15s;
+  }
+  .item-card:hover { border-color: #c5d6c7; }
+  .item-card.active-card {
+    border: 2px solid var(--g);
+    background: #f6faf7;
+  }
+  .item-main { flex: 1; min-width: 240px; }
+  .item-title {
+    font: 700 15px 'Manrope', sans-serif;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+  .item-meta {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .item-note {
+    margin: 8px 0 0;
+    padding: 8px 12px;
+    background: #f2f6f2;
+    border-radius: 9px;
+    font-size: 13px;
+    color: #364f44;
+  }
+
+  /* Notificações Toast */
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    max-width: 400px;
+    background: #1e463a;
+    color: #fff;
+    padding: 14px 18px;
+    border-radius: 13px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    font-weight: 600;
+    font-size: 13px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: slideUp 0.25s ease;
+  }
+  .toast.error { background: var(--red); }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Modal de Edição de Participante */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 36, 30, 0.55);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    z-index: 999;
+  }
+  .modal {
+    background: var(--card);
+    border-radius: 18px;
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 22px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  }
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .modal-header h3 { margin: 0; font: 800 18px 'Manrope', sans-serif; color: var(--g); }
+  .close-btn { background: transparent; color: var(--muted); min-height: 32px; padding: 4px 8px; font-size: 18px; }
+
+  .tab[hidden], .hidden { display: none !important; }
+  .muted { color: var(--muted); font-size: 13px; }
+  .footer { text-align: center; color: #547565; padding: 20px; font-weight: 700; font-size: 13px; }
+
+  /* Responsividade Mobile */
+  @media (max-width: 768px) {
+    .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .context-bar { flex-direction: column; align-items: stretch; }
+    .edition-select { width: 100%; }
+    .actions button { flex: 1; }
+    .tabs { display: grid; grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 400px) {
+    .kpi-grid { grid-template-columns: 1fr; }
+  }
+
+  /* Impressão Limpa */
+  @media print {
+    header, .context-bar .actions, .tabs, .kpi-grid, .no-print, .footer { display: none !important; }
+    body { background: #fff; }
+    main { margin: 0; max-width: 100%; }
+    .panel { box-shadow: none; border: 0; padding: 0; }
+    .item-card { border: 1px solid #ccc; page-break-inside: avoid; }
+    .edition-select { border: 0; background: transparent; padding: 0; font-size: 20px; color: #000; }
+  }
 </style>
 </head>
 <body>
-<header><small>T.U.C.U.V.O.R.I.</small><h1>Painel administrativo</h1><p>Gerenciamento das inscrições · Roda de Cura</p></header>
+
+<header>
+  <small>T.U.C.U.V.O.R.I.</small>
+  <h1>Painel Administrativo · Roda de Cura</h1>
+  <p>Gestão de edições, vagas e lista de participantes</p>
+</header>
+
 <main>
-<section id="app">
-<div class="panel topline">
-  <div><h2 id="eventHeading">Roda de Cura</h2><div class="muted" id="sync">Conectando ao banco de dados…</div></div>
-  <div class="actions">
-    <button class="secondary" id="syncPublicBtn" title="Sincroniza manualmente esta edição com a página de inscrições">Publicar / Sincronizar Edição</button>
-    <button class="secondary" id="newEventBtn">Nova edição</button>
+  <!-- Barra de Contexto da Edição Ativa -->
+  <div class="context-bar">
+    <div class="context-info">
+      <span class="context-label">Edição Selecionada</span>
+      <div class="edition-selector-wrap">
+        <select id="globalEditionSelect" class="edition-select" aria-label="Selecionar edição">
+          <option value="">Carregando edições...</option>
+        </select>
+        <span id="headerStatusBadge" class="badge neutral">—</span>
+      </div>
+      <div class="sync-status">
+        <span id="syncDot" class="dot"></span>
+        <span id="syncText">Conectando ao banco de dados…</span>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="secondary" id="syncPublicBtn" title="Força a atualização dos dados na página pública de inscrições">
+        ↻ Sincronizar Página Pública
+      </button>
+      <button class="gold" id="newEventBtn">+ Nova Edição</button>
+    </div>
+  </div>
+
+  <!-- Indicadores Principais (KPIs) -->
+  <div class="kpi-grid" id="stats">
+    <div class="kpi"><span>Inscritos</span><strong>0 / 0</strong><small>Vagas ocupadas</small></div>
+    <div class="kpi"><span>Vagas Restantes</span><strong>0</strong><small>Disponíveis agora</small></div>
+    <div class="kpi"><span>Ocupação</span><strong>0%</strong><small>Capacidade total</small></div>
+    <div class="kpi"><span>Inscrições</span><strong>—</strong><small>Status atual</small></div>
+  </div>
+
+  <!-- Navegação por Abas -->
+  <nav class="tabs" aria-label="Seções do painel">
+    <button data-tab="dashboard" aria-selected="true">1. Visão Geral</button>
+    <button data-tab="people">2. Participantes (<span id="tabPeopleCount">0</span>)</button>
+    <button data-tab="event">3. Configurar Edição</button>
+    <button data-tab="history">4. Histórico</button>
+  </nav>
+
+  <!-- ABA 1: VISÃO GERAL -->
+  <section class="tab" data-view="dashboard">
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Resumo da Edição Ativa</h2>
+        <div class="actions">
+          <button class="secondary sm" id="quickEditBtn">Editar Dados</button>
+          <button class="danger sm" id="deleteActiveBtn">Excluir Edição</button>
+        </div>
+      </div>
+      <div id="summary" class="muted">Carregando informações da edição…</div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Todas as Edições Cadastradas</h2>
+      </div>
+      <div id="eventsList"></div>
+    </div>
+  </section>
+
+  <!-- ABA 2: PARTICIPANTES -->
+  <section class="tab" data-view="people" hidden>
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Lista de Inscritos</h2>
+        <div class="actions no-print">
+          <button id="csvBtn" class="secondary sm">⬇ Exportar CSV</button>
+          <button id="printBtn" class="secondary sm">🖨 Imprimir Lista</button>
+        </div>
+      </div>
+
+      <div class="no-print" style="margin-bottom: 16px;">
+        <label for="search" style="margin-top:0;">Filtrar participantes desta edição</label>
+        <input id="search" type="search" placeholder="Digite nome, CPF ou número de protocolo…">
+      </div>
+
+      <div id="peopleList"></div>
+    </div>
+  </section>
+
+  <!-- ABA 3: CONFIGURAR EDIÇÃO E VAGAS -->
+  <section class="tab" data-view="event" hidden>
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Dados Gerais da Edição</h2>
+      </div>
+      <form id="eventForm">
+        <div class="row">
+          <div>
+            <label for="edition">Número da edição *</label>
+            <input id="edition" placeholder="Ex.: 12ª" required>
+          </div>
+          <div>
+            <label for="eventName">Nome do evento *</label>
+            <input id="eventName" value="Roda de Cura" required>
+          </div>
+          <div>
+            <label for="status">Status das inscrições</label>
+            <select id="status">
+              <option value="open">🟢 Abertas (Visível para inscrição)</option>
+              <option value="closed">🔴 Encerradas (Bloqueado)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="date">Data do evento *</label>
+            <input id="date" type="date" required>
+          </div>
+          <div>
+            <label for="time">Horário *</label>
+            <input id="time" placeholder="Ex.: 14:00" required>
+          </div>
+          <div>
+            <label for="initialSlots">Vagas iniciais *</label>
+            <input id="initialSlots" type="number" min="0" step="1" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="place">Local *</label>
+            <input id="place" placeholder="Ex.: Terreiro TUCUVORI" required>
+          </div>
+          <div>
+            <label for="address">Endereço completo</label>
+            <input id="address" placeholder="Rua, número, bairro, cidade">
+          </div>
+        </div>
+
+        <label for="description">Descrição / Apresentação</label>
+        <textarea id="description" placeholder="Texto de apresentação que aparece na página de inscrição"></textarea>
+
+        <label for="instructions">Orientações aos participantes</label>
+        <textarea id="instructions" placeholder="Ex.: Trazer roupas claras, chegar com 15 minutos de antecedência..."></textarea>
+
+        <div class="actions" style="margin-top: 18px;">
+          <button type="submit">Salvar Alterações</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Acréscimo de Vagas Extras</h2>
+      </div>
+      <p class="muted" style="margin-top:0;">Use esta opção caso precise liberar mais vagas além da capacidade inicial.</p>
+      <div class="row" style="align-items: flex-end;">
+        <div style="max-width: 240px;">
+          <label for="extraSlots">Quantidade de vagas a somar</label>
+          <input id="extraSlots" type="number" min="1" step="1" placeholder="Ex.: 10">
+        </div>
+        <div>
+          <button id="addSlotsBtn" type="button" class="secondary">+ Adicionar Vagas</button>
+        </div>
+      </div>
+      <div id="slotsHistory" style="margin-top: 14px;"></div>
+    </div>
+  </section>
+
+  <!-- ABA 4: HISTÓRICO -->
+  <section class="tab" data-view="history" hidden>
+    <div class="panel">
+      <div class="panel-header">
+        <h2>Registro de Atividades da Edição</h2>
+      </div>
+      <div id="logs"></div>
+    </div>
+  </section>
+</main>
+
+<div class="footer">A casa é de todos. Todos usufruem. Axé a todos!</div>
+
+<!-- MODAL DE EDIÇÃO DE PARTICIPANTE -->
+<div id="editPersonModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="modalTitle">Editar Participante</h3>
+      <button type="button" class="close-btn" id="closeModalBtn" aria-label="Fechar">&times;</button>
+    </div>
+    <form id="editPersonForm">
+      <input type="hidden" id="editPersonId">
+      <label for="editName">Nome completo *</label>
+      <input id="editName" required>
+
+      <div class="row">
+        <div>
+          <label for="editCpf">CPF *</label>
+          <input id="editCpf" maxlength="14" placeholder="000.000.000-00" required>
+        </div>
+        <div>
+          <label for="editBirthDate">Data de nascimento</label>
+          <input id="editBirthDate" type="date">
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="editPhone">Telefone / WhatsApp</label>
+          <input id="editPhone" maxlength="15" placeholder="(11) 99999-9999">
+        </div>
+        <div>
+          <label for="editFirstTime">Primeira vez na Roda?</label>
+          <select id="editFirstTime">
+            <option value="true">Sim</option>
+            <option value="false">Não</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="editReason">Motivo da participação</label>
+      <textarea id="editReason" rows="3"></textarea>
+
+      <div class="actions" style="justify-content: flex-end; margin-top: 16px;">
+        <button type="button" class="secondary" id="cancelModalBtn">Cancelar</button>
+        <button type="submit">Salvar Dados</button>
+      </div>
+    </form>
   </div>
 </div>
-<div id="globalMsg" class="notice hidden"></div>
-<div class="grid" id="stats"></div>
-<nav class="tabs" aria-label="Seções"><button data-tab="dashboard" aria-selected="true">Visão geral</button><button data-tab="event">Evento e vagas</button><button data-tab="people">Participantes</button><button data-tab="history">Histórico</button></nav>
-<section class="tab" data-view="dashboard">
-<div class="panel"><h2>Resumo da edição</h2><div id="summary" class="muted">Carregando dados…</div></div>
-<div class="panel"><h2>Edições cadastradas</h2><div id="eventsList"></div></div></section>
-<section class="tab" data-view="event" hidden>
-<div class="panel"><h2>Configurações da Roda de Cura</h2><form id="eventForm">
-<div class="row"><div><label>Número da edição</label><input id="edition" placeholder="12ª" required></div><div><label>Nome do evento</label><input id="eventName" value="Roda de Cura" required></div></div>
-<div class="row"><div><label>Data</label><input id="date" type="date" required></div><div><label>Horário</label><input id="time" placeholder="Ex.: 14:00" required></div></div>
-<div class="row"><div><label>Local</label><input id="place" required></div><div><label>Endereço</label><input id="address"></div></div>
-<label>Descrição / apresentação</label><textarea id="description"></textarea><label>Orientações aos participantes</label><textarea id="instructions"></textarea>
-<div class="row"><div><label>Vagas iniciais</label><input id="initialSlots" type="number" min="0" step="1" required></div><div><label>Status das inscrições</label><select id="status"><option value="open">Abertas</option><option value="closed">Encerradas</option></select></div></div>
-<div class="actions"><button>Salvar configurações</button></div></form><div id="eventMsg" class="notice hidden"></div></div>
-<div class="panel"><h2>Adicionar vagas</h2><p class="muted">Os acréscimos são somados à capacidade inicial e ficam registrados no histórico.</p><div class="row"><div><label>Quantidade a acrescentar</label><input id="extraSlots" type="number" min="1" step="1" placeholder="Ex.: 10"></div><div><label>&nbsp;</label><button id="addSlotsBtn" type="button">Adicionar vagas</button></div></div><div id="slotsHistory"></div></div></section>
-<section class="tab" data-view="people" hidden><div class="panel"><h2>Participantes inscritos</h2><div class="row"><div><label>Pesquisar nome, CPF ou protocolo</label><input id="search" placeholder="Digite para pesquisar…"></div><div><label>Edição</label><select id="eventFilter"></select></div></div><div class="actions"><button id="csvBtn" class="secondary">Exportar CSV</button><button id="printBtn" class="secondary">Imprimir lista</button></div><div id="peopleList"></div></div></section>
-<section class="tab" data-view="history" hidden><div class="panel"><h2>Histórico administrativo</h2><div id="logs"></div></div></section>
-</section>
-<div class="footer">A casa é de todos. Todos usufruem. Axé a todos!</div></main>
+
+<!-- Container de Notificação Toast -->
+<div id="toast" class="toast hidden"></div>
+
 <script type="module">
-import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js';
-import {getDatabase,ref,onValue,get,set,update,remove,push} from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js';
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js';
+import { getDatabase, ref, onValue, get, set, update, remove, push } from 'https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDNCSNXQ9miRju0HCdZTdBlrxF23VMCaDg",
@@ -56,151 +669,499 @@ const firebaseConfig = {
   appId: "1:304844490843:web:ec91649a8430adcd06d77e"
 };
 
-const appFirebase=initializeApp(firebaseConfig),db=getDatabase(appFirebase),$=id=>document.getElementById(id);
-let activeId=null,events={},eventData={},people={},logs={},unsub=[],eventUnsub=null,regUnsub=null;
-const root='rodaCura';
-const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const fmt=n=>Number(n||0).toLocaleString('pt-BR');
-function validCpf(v){const n=String(v).replace(/\D/g,'');if(n.length!==11||/^(\d)\1+$/.test(n))return false;let s=0;for(let i=0;i<9;i++)s+=+n[i]*(10-i);let d=(s*10)%11;if(d===10)d=0;if(d!==+n[9])return false;s=0;for(let i=0;i<10;i++)s+=+n[i]*(11-i);d=(s*10)%11;if(d===10)d=0;return d===+n[10]}
+const appFirebase = initializeApp(firebaseConfig);
+const db = getDatabase(appFirebase);
+const $ = id => document.getElementById(id);
+const root = 'rodaCura';
 
-function notice(id,msg,error=false){const e=$(id);if(!e)return;e.textContent=msg;e.classList.toggle('error',error);e.classList.remove('hidden')}
-function log(action,detail){if(!activeId) return Promise.resolve();const id=push(ref(db,`${root}/events/${activeId}/history`)).key;return set(ref(db,`${root}/events/${activeId}/history/${id}`),{action,detail,by:'Administrador',at:Date.now()})}
-function stop(){unsub.forEach(f=>f());unsub=[];if(eventUnsub){eventUnsub();eventUnsub=null}if(regUnsub){regUnsub();regUnsub=null}}
-function switchTab(t){document.querySelectorAll('[data-tab]').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.tab===t)));document.querySelectorAll('[data-view]').forEach(v=>v.hidden=v.dataset.view!==t)}
-document.querySelector('.tabs').addEventListener('click',e=>{let b=e.target.closest('[data-tab]');if(b)switchTab(b.dataset.tab)});
+let activeId = null;
+let events = {};
+let eventData = {};
+let people = {};
+let logs = {};
+let unsub = [];
+let eventUnsub = null;
+let regUnsub = null;
+let toastTimer = null;
 
-// Monitora o estado real de conexão com o Realtime Database
-onValue(ref(db,'.info/connected'),snap=>{
-  if(snap.val()===true){
-    $('sync').textContent='Conectado e sincronizado em tempo real';
-  }else{
-    $('sync').textContent='Conectando ao Firebase Realtime Database…';
-  }
+// Utilitários de Formatação e Segurança
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const fmtNum = n => Number(n || 0).toLocaleString('pt-BR');
+
+function formatDateBR(isoDate) {
+  if (!isoDate || !isoDate.includes('-')) return isoDate || 'Data não definida';
+  const [y, m, d] = isoDate.split('-');
+  return `${d}/${m}/${y}`;
+}
+
+function formatCpf(v) {
+  const n = String(v || '').replace(/\D/g, '').slice(0, 11);
+  if (n.length <= 3) return n;
+  if (n.length <= 6) return `${n.slice(0, 3)}.${n.slice(3)}`;
+  if (n.length <= 9) return `${n.slice(0, 3)}.${n.slice(3, 6)}.${n.slice(6)}`;
+  return `${n.slice(0, 3)}.${n.slice(3, 6)}.${n.slice(6, 9)}-${n.slice(9)}`;
+}
+
+function formatPhone(v) {
+  const n = String(v || '').replace(/\D/g, '').slice(0, 11);
+  if (n.length <= 2) return n;
+  if (n.length <= 6) return `(${n.slice(0, 2)}) ${n.slice(2)}`;
+  if (n.length <= 10) return `(${n.slice(0, 2)}) ${n.slice(2, 6)}-${n.slice(6)}`;
+  return `(${n.slice(0, 2)}) ${n.slice(2, 7)}-${n.slice(7)}`;
+}
+
+function validCpf(v) {
+  const n = String(v).replace(/\D/g, '');
+  if (n.length !== 11 || /^(\d)\1+$/.test(n)) return false;
+  let s = 0;
+  for (let i = 0; i < 9; i++) s += +n[i] * (10 - i);
+  let d = (s * 10) % 11;
+  if (d === 10) d = 0;
+  if (d !== +n[9]) return false;
+  s = 0;
+  for (let i = 0; i < 10; i++) s += +n[i] * (11 - i);
+  d = (s * 10) % 11;
+  if (d === 10) d = 0;
+  return d === +n[10];
+}
+
+// Notificações Flutuantes (Toast)
+function notify(msg, isError = false) {
+  const el = $('toast');
+  el.textContent = msg;
+  el.classList.toggle('error', isError);
+  el.classList.remove('hidden');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.add('hidden'), 4200);
+}
+
+// Registro de Log
+function logAction(action, detail) {
+  if (!activeId) return Promise.resolve();
+  const id = push(ref(db, `${root}/events/${activeId}/history`)).key;
+  return set(ref(db, `${root}/events/${activeId}/history/${id}`), {
+    action,
+    detail,
+    by: 'Administrador',
+    at: Date.now()
+  });
+}
+
+// Navegação por Abas
+function switchTab(tabName) {
+  document.querySelectorAll('[data-tab]').forEach(btn => {
+    btn.setAttribute('aria-selected', String(btn.dataset.tab === tabName));
+  });
+  document.querySelectorAll('[data-view]').forEach(view => {
+    view.hidden = view.dataset.view !== tabName;
+  });
+}
+
+document.querySelector('.tabs').addEventListener('click', e => {
+  const btn = e.target.closest('[data-tab]');
+  if (btn) switchTab(btn.dataset.tab);
 });
 
-function subscribe(){
-  if(unsub.length) stop();
-  unsub.push(onValue(ref(db,`${root}/events`),s=>{
-    events=s.val()||{};
-    const ids=Object.keys(events).sort((a,b)=>(events[b].createdAt||0)-(events[a].createdAt||0));
-    if(!activeId||!events[activeId]) activeId=ids[0]||null;
-    renderEvents();renderFilter();
-    if(activeId){
+// Status de Conexão Firebase
+onValue(ref(db, '.info/connected'), snap => {
+  const online = snap.val() === true;
+  $('syncDot').className = online ? 'dot online' : 'dot';
+  $('syncText').textContent = online ? 'Sincronizado em tempo real' : 'Conectando ao servidor…';
+});
+
+// Gerenciamento de Listeners
+function stopListeners() {
+  unsub.forEach(f => f());
+  unsub = [];
+  if (eventUnsub) { eventUnsub(); eventUnsub = null; }
+  if (regUnsub) { regUnsub(); regUnsub = null; }
+}
+
+function subscribe() {
+  if (unsub.length) stopListeners();
+  unsub.push(onValue(ref(db, `${root}/events`), snap => {
+    events = snap.val() || {};
+    const ids = Object.keys(events).sort((a, b) => (events[b].createdAt || 0) - (events[a].createdAt || 0));
+    
+    if (!activeId || !events[activeId]) {
+      activeId = ids[0] || null;
+    }
+    
+    renderGlobalSelect();
+    renderEventsList();
+
+    if (activeId) {
       watchEvent();
     } else {
-      $('eventHeading').textContent='Cadastre a primeira edição';
-      $('sync').textContent='Conectado · Nenhuma edição cadastrada ainda';
-      $('summary').innerHTML='<p class="muted">Clique em <b>Nova edição</b> acima para criar a primeira Roda de Cura neste banco de dados.</p>';
-      $('stats').innerHTML=[['Inscritos',0],['Vagas iniciais',0],['Vagas adicionais',0],['Capacidade total',0]].map(([a,b])=>`<div class="stat"><span>${a}</span><strong>${b}</strong></div>`).join('');
+      renderEmptyState();
     }
-  },e=>{
-    $('sync').textContent='Erro de conexão ou permissão negada no Firebase';
-    notice('globalMsg',`Erro ao acessar o banco de dados: ${e.message}. Verifique se o Realtime Database foi criado neste projeto e se as regras permitem leitura/escrita.`,true);
+  }, err => {
+    $('syncDot').className = 'dot error';
+    $('syncText').textContent = 'Erro de conexão';
+    notify(`Erro ao acessar o banco: ${err.message}`, true);
   }));
 }
 
-function watchEvent(){
-  if(eventUnsub) eventUnsub();
-  if(regUnsub) regUnsub();
-  if(!activeId) return;
-  const base=`${root}/events/${activeId}`;
-  
-  eventUnsub=onValue(ref(db,base),s=>{
-    eventData=s.val()||{};
-    people=eventData.participants||{};
-    logs=eventData.history||{};
-    render();
-    renderFilter();
-  },e=>notice('globalMsg',`Falha ao sincronizar edição: ${e.message}`,true));
+function renderEmptyState() {
+  $('globalEditionSelect').innerHTML = '<option value="">Nenhuma edição cadastrada</option>';
+  $('headerStatusBadge').className = 'badge neutral';
+  $('headerStatusBadge').textContent = 'Sem edições';
+  $('summary').innerHTML = '<p>Nenhuma edição encontrada. Clique em <b>+ Nova Edição</b> no topo para começar.</p>';
+  $('stats').innerHTML = `
+    <div class="kpi"><span>Inscritos</span><strong>0 / 0</strong><small>Vagas ocupadas</small></div>
+    <div class="kpi"><span>Vagas Restantes</span><strong>0</strong><small>Disponíveis</small></div>
+    <div class="kpi"><span>Ocupação</span><strong>0%</strong><small>Capacidade total</small></div>
+    <div class="kpi"><span>Inscrições</span><strong>—</strong><small>Status atual</small></div>
+  `;
+  $('peopleList').innerHTML = '<p class="muted">Crie uma edição primeiro.</p>';
+  $('logs').innerHTML = '<p class="muted">Nenhum registro.</p>';
+}
 
-  // Auto-reconciliação: garante que qualquer inscrição em rodaCura/registrations da edição ativa apareça em participants
-  regUnsub=onValue(ref(db,`${root}/registrations`),async s=>{
-    const allRegs=s.val()||{};
-    const currentParticipants=eventData.participants||{};
-    let syncedCount=0;
-    const updates={};
+function watchEvent() {
+  if (eventUnsub) eventUnsub();
+  if (regUnsub) regUnsub();
+  if (!activeId) return;
 
-    for(const [regId,reg] of Object.entries(allRegs)){
-      if(reg && reg.eventId===activeId && !currentParticipants[regId]){
-        updates[`${root}/events/${activeId}/participants/${regId}`]=reg;
-        syncedCount++;
+  const base = `${root}/events/${activeId}`;
+
+  eventUnsub = onValue(ref(db, base), snap => {
+    eventData = snap.val() || {};
+    people = eventData.participants || {};
+    logs = eventData.history || {};
+    renderActiveEdition();
+  }, err => notify(`Falha ao carregar edição: ${err.message}`, true));
+
+  // Reconciliação automática entre registrations e participants
+  regUnsub = onValue(ref(db, `${root}/registrations`), async snap => {
+    const allRegs = snap.val() || {};
+    const currentParticipants = eventData.participants || {};
+    const matchingRegs = Object.fromEntries(
+      Object.entries(allRegs).filter(([, reg]) => reg && reg.eventId === activeId)
+    );
+
+    const merged = { ...currentParticipants };
+    const updates = {};
+    let changed = false;
+
+    for (const [regId, reg] of Object.entries(matchingRegs)) {
+      if (!currentParticipants[regId] || Number(reg.updatedAt || 0) > Number(currentParticipants[regId].updatedAt || 0)) {
+        merged[regId] = reg;
+        updates[`${root}/events/${activeId}/participants/${regId}`] = reg;
+        changed = true;
       }
     }
 
-    if(syncedCount>0){
-      const totalActive=activePeopleCount({...currentParticipants,...Object.fromEntries(Object.entries(allRegs).filter(([,r])=>r&&r.eventId===activeId))});
-      updates[`${root}/events/${activeId}/registeredCount`]=totalActive;
-      updates[`${root}/publicEvents/${activeId}/registeredCount`]=totalActive;
-      await update(ref(db),updates);
+    const totalActive = activePeopleCount(merged);
+    if (Number(eventData.registeredCount || 0) !== totalActive) {
+      updates[`${root}/events/${activeId}/registeredCount`] = totalActive;
+      changed = true;
+    }
+
+    if (changed) {
+      updates[`${root}/events/${activeId}/updatedAt`] = Date.now();
+      try {
+        await update(ref(db), updates);
+      } catch (err) {
+        console.error('Falha na reconciliação:', err);
+      }
+    }
+
+    // Mantém contagem pública atualizada
+    const publicSnap = await get(ref(db, `${root}/publicEvents/${activeId}/registeredCount`));
+    if (Number(publicSnap.val() || 0) !== totalActive) {
+      try {
+        await update(ref(db), {
+          [`${root}/publicEvents/${activeId}/registeredCount`]: totalActive,
+          [`${root}/publicEvents/${activeId}/updatedAt`]: Date.now()
+        });
+      } catch (err) {
+        console.warn('Erro ao sincronizar contagem pública:', err);
+      }
     }
   });
 }
 
-function publicData(e, countOverride){
+function publicData(e, countOverride) {
   const count = countOverride !== undefined ? countOverride : activePeopleCount(e.participants);
   return {
-    edition:e.edition||'',
-    name:e.name||'Roda de Cura',
-    date:e.date||'',
-    time:e.time||'',
-    place:e.place||'',
-    address:e.address||'',
-    description:e.description||'',
-    instructions:e.instructions||'',
-    initialSlots:Number(e.initialSlots||0),
-    extraSlots:Number(e.extraSlots||0),
-    registeredCount:Number(count),
-    status:e.status||'closed',
-    updatedAt:Date.now()
+    edition: e.edition || '',
+    name: e.name || 'Roda de Cura',
+    date: e.date || '',
+    time: e.time || '',
+    place: e.place || '',
+    address: e.address || '',
+    description: e.description || '',
+    instructions: e.instructions || '',
+    initialSlots: Number(e.initialSlots || 0),
+    extraSlots: Number(e.extraSlots || 0),
+    registeredCount: Number(count),
+    status: e.status || 'closed',
+    updatedAt: Date.now()
   };
 }
-function capacity(){const initial=Number(eventData.initialSlots||0),extra=Number(eventData.extraSlots||0);return Math.max(0,Number.isFinite(initial)?initial:0)+Math.max(0,Number.isFinite(extra)?extra:0)}
-function activePeopleCount(source=people){return Object.values(source||{}).filter(p=>p&&p.status!=='cancelled').length}
 
-function render(){
-  const count=activePeopleCount(),cap=capacity(),left=Math.max(0,cap-count),pct=cap?Math.min(100,count/cap*100):0,status=eventData.status==='closed'?'Encerradas':left===0?'Esgotadas':'Abertas';
-  $('eventHeading').textContent=`${eventData.edition||''} ${eventData.name||'Roda de Cura'}`;
-  $('sync').textContent='Conectado e sincronizado em tempo real';
-  $('stats').innerHTML=[['Inscritos',count],['Vagas iniciais',eventData.initialSlots||0],['Vagas adicionais',eventData.extraSlots||0],['Capacidade total',cap],['Vagas preenchidas',count],['Vagas restantes',left],['Ocupação',pct.toFixed(0)+'%'],['Situação',status]].map(([a,b])=>`<div class="stat"><span>${a}</span><strong>${b}</strong></div>`).join('');
-  $('summary').innerHTML=`<p><b>${esc(eventData.date||'Data a definir')}</b> · ${esc(eventData.time||'')}</p><p>${esc(eventData.place||'')} ${esc(eventData.address||'')}</p><div class="bar"><i style="width:${pct}%"></i></div><p>${count} de ${cap} vagas ocupadas · ${left} disponíveis</p>`;
-  for(const [id,key] of [['edition','edition'],['eventName','name'],['date','date'],['time','time'],['place','place'],['address','address'],['description','description'],['instructions','instructions'],['initialSlots','initialSlots'],['status','status']])$(id).value=eventData[key]??(id==='eventName'?'Roda de Cura':'');
-  $('slotsHistory').innerHTML=Object.values(eventData.slotHistory||{}).sort((a,b)=>b.at-a.at).map(x=>`<div class="card">+${fmt(x.quantity)} vagas · ${new Date(x.at).toLocaleString('pt-BR')} · ${esc(x.by||'Administração')}</div>`).join('')||'<p class="muted">Nenhum acréscimo registrado.</p>';
-  renderPeople();
-  $('logs').innerHTML=Object.values(logs).sort((a,b)=>b.at-a.at).map(x=>`<div class="card"><b>${esc(x.action)}</b><div>${esc(x.detail)}</div><small class="muted">${new Date(x.at).toLocaleString('pt-BR')}</small></div>`).join('')||'<p class="muted">Nenhuma ação registrada nesta edição.</p>';
+function capacity() {
+  const initial = Number(eventData.initialSlots || 0);
+  const extra = Number(eventData.extraSlots || 0);
+  return Math.max(0, initial) + Math.max(0, extra);
 }
 
-function renderEvents(){$('eventsList').innerHTML=Object.entries(events).sort((a,b)=>(b[1].createdAt||0)-(a[1].createdAt||0)).map(([id,e])=>`<div class="card"><b>${esc(e.edition)} ${esc(e.name)}</b><p class="muted">${esc(e.date||'')} · ${esc(e.status||'')}</p><button class="secondary" data-open="${esc(id)}">Abrir edição</button></div>`).join('')||'<p class="muted">Nenhuma edição criada.</p>'}
-$('eventsList').addEventListener('click',e=>{const b=e.target.closest('[data-open]');if(b && events[b.dataset.open]){activeId=b.dataset.open;eventData={};people={};logs={};renderPeople();watchEvent();switchTab('dashboard')}});
+function activePeopleCount(source = people) {
+  return Object.values(source || {}).filter(p => p && p.status !== 'cancelled').length;
+}
 
-function renderFilter(){const opts=Object.entries(events).map(([id,e])=>`<option value="${esc(id)}">${esc(e.edition||'')} ${esc(e.name||'')}</option>`).join('');$('eventFilter').innerHTML=opts;$('eventFilter').value=activeId||''}
-$('eventFilter').onchange=()=>{const id=$('eventFilter').value;if(id){activeId=id;people={};eventData={};renderPeople();watchEvent()}};
+// Renderização da Edição Ativa
+function renderActiveEdition() {
+  const count = activePeopleCount();
+  const cap = capacity();
+  const left = Math.max(0, cap - count);
+  const pct = cap ? Math.min(100, (count / cap) * 100) : 0;
 
-$('syncPublicBtn').onclick=async()=>{
-  if(!activeId)return alert('Nenhuma edição selecionada.');
-  try{
-    const currentCount=activePeopleCount();
-    const payload=publicData(eventData,currentCount);
-    await update(ref(db,`${root}/events/${activeId}`),{registeredCount:currentCount,updatedAt:Date.now()});
-    await set(ref(db,`${root}/publicEvents/${activeId}`),payload);
-    await log('Sincronização manual','Dados e vagas sincronizados com a página de inscrições');
-    alert('Edição sincronizada com sucesso com a página pública!');
-  }catch(err){alert('Erro ao sincronizar: '+err.message)}
+  let statusText = 'Abertas';
+  let badgeClass = 'open';
+  if (eventData.status === 'closed') {
+    statusText = 'Encerradas';
+    badgeClass = 'closed';
+  } else if (left === 0 && cap > 0) {
+    statusText = 'Esgotadas';
+    badgeClass = 'full';
+  }
+
+  // Atualiza Badge do Topo e Contador da Aba
+  $('headerStatusBadge').className = `badge ${badgeClass}`;
+  $('headerStatusBadge').textContent = statusText;
+  $('tabPeopleCount').textContent = count;
+
+  // Atualiza KPIs
+  const extraText = Number(eventData.extraSlots || 0) > 0 
+    ? `${eventData.initialSlots || 0} iniciais + ${eventData.extraSlots} extras` 
+    : `${eventData.initialSlots || 0} vagas iniciais`;
+
+  $('stats').innerHTML = `
+    <div class="kpi">
+      <span>Inscritos / Capacidade</span>
+      <strong>${fmtNum(count)} / ${fmtNum(cap)}</strong>
+      <small>${extraText}</small>
+    </div>
+    <div class="kpi">
+      <span>Vagas Restantes</span>
+      <strong>${fmtNum(left)}</strong>
+      <small>${left === 1 ? '1 vaga livre' : `${fmtNum(left)} vagas livres`}</small>
+    </div>
+    <div class="kpi">
+      <span>Taxa de Ocupação</span>
+      <strong>${pct.toFixed(0)}%</strong>
+      <small>Preenchimento atual</small>
+    </div>
+    <div class="kpi">
+      <span>Status das Inscrições</span>
+      <strong>${statusText}</strong>
+      <small>${eventData.status === 'open' ? 'Recebendo cadastros' : 'Página bloqueada'}</small>
+    </div>
+  `;
+
+  // Resumo na Visão Geral
+  $('summary').innerHTML = `
+    <div style="display:flex; gap:16px; flex-wrap:wrap; margin-bottom:8px;">
+      <div><strong>📅 Data:</strong> ${esc(formatDateBR(eventData.date))} às ${esc(eventData.time || '—')}</div>
+      <div><strong>📍 Local:</strong> ${esc(eventData.place || 'Não informado')} ${eventData.address ? `(${esc(eventData.address)})` : ''}</div>
+    </div>
+    <div class="bar"><i style="width:${pct}%"></i></div>
+    <div style="display:flex; justify-content:space-between; font-size:13px;">
+      <span><strong>${fmtNum(count)}</strong> participantes confirmados</span>
+      <span><strong>${fmtNum(left)}</strong> vagas disponíveis</span>
+    </div>
+  `;
+
+  // Preenche Formulário de Configuração
+  const fields = [
+    ['edition', 'edition'],
+    ['eventName', 'name'],
+    ['date', 'date'],
+    ['time', 'time'],
+    ['place', 'place'],
+    ['address', 'address'],
+    ['description', 'description'],
+    ['instructions', 'instructions'],
+    ['initialSlots', 'initialSlots'],
+    ['status', 'status']
+  ];
+  for (const [elId, key] of fields) {
+    $(elId).value = eventData[key] ?? (elId === 'eventName' ? 'Roda de Cura' : '');
+  }
+
+  // Histórico de Vagas Extras
+  const slotHist = Object.values(eventData.slotHistory || {}).sort((a, b) => b.at - a.at);
+  $('slotsHistory').innerHTML = slotHist.length
+    ? slotHist.map(x => `<div class="item-card" style="padding:10px 14px;"><span><strong>+${fmtNum(x.quantity)} vagas</strong> adicionadas</span><span class="muted">${new Date(x.at).toLocaleString('pt-BR')}</span></div>`).join('')
+    : '<p class="muted">Nenhum acréscimo de vagas registrado.</p>';
+
+  // Renderiza Participantes e Histórico Geral
+  renderPeople();
+  renderEventsList();
+
+  const logList = Object.values(logs).sort((a, b) => b.at - a.at);
+  $('logs').innerHTML = logList.length
+    ? logList.map(x => `
+        <div class="item-card" style="padding:12px 14px;">
+          <div class="item-main">
+            <strong>${esc(x.action)}</strong>
+            <div class="item-meta">${esc(x.detail)}</div>
+          </div>
+          <small class="muted">${new Date(x.at).toLocaleString('pt-BR')}</small>
+        </div>`).join('')
+    : '<p class="muted">Nenhuma ação registrada nesta edição.</p>';
+}
+
+// Seletor Global no Topo
+function renderGlobalSelect() {
+  const sorted = Object.entries(events).sort((a, b) => (b[1].createdAt || 0) - (a[1].createdAt || 0));
+  if (!sorted.length) return;
+  $('globalEditionSelect').innerHTML = sorted.map(([id, e]) => {
+    const label = `${e.edition ? e.edition + ' ' : ''}${e.name || 'Roda de Cura'}`;
+    return `<option value="${esc(id)}">${esc(label)} (${formatDateBR(e.date)})</option>`;
+  }).join('');
+  $('globalEditionSelect').value = activeId || '';
+}
+
+$('globalEditionSelect').onchange = () => {
+  const id = $('globalEditionSelect').value;
+  if (id && id !== activeId) {
+    activeId = id;
+    eventData = {};
+    people = {};
+    logs = {};
+    watchEvent();
+    renderEventsList();
+  }
+};
+
+// Lista de Todas as Edições (Aba Visão Geral)
+function renderEventsList() {
+  const sorted = Object.entries(events).sort((a, b) => (b[1].createdAt || 0) - (a[1].createdAt || 0));
+  $('eventsList').innerHTML = sorted.length
+    ? sorted.map(([id, e]) => {
+        const isCurrent = id === activeId;
+        const count = activePeopleCount(e.participants);
+        const cap = Number(e.initialSlots || 0) + Number(e.extraSlots || 0);
+        const isOpen = e.status === 'open';
+        return `
+          <div class="item-card ${isCurrent ? 'active-card' : ''}">
+            <div class="item-main">
+              <div class="item-title">
+                <span>${esc(e.edition || 'Sem nº')} ${esc(e.name || 'Roda de Cura')}</span>
+                ${isCurrent ? '<span class="badge neutral">Ativa no painel</span>' : ''}
+                <span class="badge ${isOpen ? 'open' : 'closed'}">${isOpen ? 'Abertas' : 'Encerradas'}</span>
+              </div>
+              <div class="item-meta">
+                📅 ${esc(formatDateBR(e.date))} · 👥 <strong>${fmtNum(count)}</strong> de ${fmtNum(cap)} vagas preenchidas
+              </div>
+            </div>
+            <div class="actions">
+              ${!isCurrent ? `<button class="secondary sm" data-open="${esc(id)}">Selecionar</button>` : ''}
+              <button class="gold sm" data-edit-event="${esc(id)}">Configurar</button>
+              <button class="danger sm" data-delete-event="${esc(id)}">Excluir</button>
+            </div>
+          </div>`;
+      }).join('')
+    : '<p class="muted">Nenhuma edição cadastrada.</p>';
+}
+
+$('eventsList').addEventListener('click', async e => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  const id = btn.dataset.open || btn.dataset.editEvent || btn.dataset.deleteEvent;
+  if (!id || !events[id]) return;
+
+  if (btn.dataset.deleteEvent) {
+    await deleteEdition(id);
+    return;
+  }
+
+  activeId = id;
+  $('globalEditionSelect').value = id;
+  eventData = {};
+  people = {};
+  logs = {};
+  watchEvent();
+  renderEventsList();
+
+  if (btn.dataset.editEvent) {
+    switchTab('event');
+  } else {
+    notify('Edição selecionada.');
+  }
+});
+
+// Ações de Edição (Criar, Editar Rápido, Excluir, Sincronizar)
+$('quickEditBtn').onclick = () => {
+  if (!activeId) return notify('Selecione uma edição primeiro.', true);
+  switchTab('event');
+  $('edition').focus();
+};
+
+$('deleteActiveBtn').onclick = () => {
+  if (activeId) deleteEdition(activeId);
+};
+
+async function deleteEdition(id) {
+  const target = events[id];
+  if (!target) return;
+  const regsSnap = await get(ref(db, `${root}/registrations`));
+  const regs = Object.entries(regsSnap.val() || {}).filter(([, r]) => r && r.eventId === id);
+  const count = activePeopleCount(target.participants);
+  const label = `${target.edition || ''} ${target.name || 'Roda de Cura'}`.trim();
+
+  if (!confirm(`Tem certeza que deseja excluir definitivamente a edição "${label}"?\n\nIsso apagará ${count} participante(s) e ${regs.length} registro(s). Essa ação não pode ser desfeita.`)) {
+    return;
+  }
+
+  try {
+    await Promise.all([
+      remove(ref(db, `${root}/events/${id}`)),
+      remove(ref(db, `${root}/publicEvents/${id}`)),
+      ...regs.map(([regId]) => remove(ref(db, `${root}/registrations/${regId}`)))
+    ]);
+    if (activeId === id) {
+      activeId = null;
+      eventData = {};
+      people = {};
+      logs = {};
+    }
+    notify(`Edição "${label}" excluída com sucesso.`);
+  } catch (err) {
+    notify(`Erro ao excluir edição: ${err.message}`, true);
+  }
+}
+
+$('syncPublicBtn').onclick = async () => {
+  if (!activeId) return notify('Nenhuma edição selecionada.', true);
+  const btn = $('syncPublicBtn');
+  btn.disabled = true;
+  try {
+    const currentCount = activePeopleCount();
+    const payload = publicData(eventData, currentCount);
+    await update(ref(db, `${root}/events/${activeId}`), { registeredCount: currentCount, updatedAt: Date.now() });
+    await set(ref(db, `${root}/publicEvents/${activeId}`), payload);
+    await logAction('Sincronização manual', 'Dados e vagas publicados na página pública');
+    notify('Página pública sincronizada com sucesso!');
+  } catch (err) {
+    notify('Erro ao sincronizar: ' + err.message, true);
+  } finally {
+    btn.disabled = false;
+  }
 };
 
 $('newEventBtn').onclick = async () => {
-  const button = $('newEventBtn');
-  if (button.disabled) return;
-
-  button.disabled = true;
-  button.textContent = 'Criando edição…';
-  $('globalMsg').classList.add('hidden');
+  const btn = $('newEventBtn');
+  if (btn.disabled) return;
+  btn.disabled = true;
+  btn.textContent = 'Criando…';
 
   try {
-    // Gera a chave diretamente dentro de /rodaCura/events.
-    // Assim, não é necessária permissão de escrita na raiz do banco.
     const eventRef = push(ref(db, `${root}/events`));
     const id = eventRef.key;
-    if (!id) throw new Error('O Firebase não conseguiu gerar o identificador da edição.');
+    if (!id) throw new Error('Falha ao gerar ID da edição.');
 
     const now = Date.now();
     const data = {
@@ -223,152 +1184,257 @@ $('newEventBtn').onclick = async () => {
       slotHistory: {}
     };
 
-    // Grava a edição administrativa primeiro, em seu caminho específico.
     await set(eventRef, data);
-
     activeId = id;
     eventData = data;
     people = {};
     logs = {};
 
-    // A publicação pública é uma gravação separada.
-    // Se as regras desse caminho bloquearem, a edição administrativa permanece criada.
     try {
       await set(ref(db, `${root}/publicEvents/${id}`), publicData(data, 0));
-    } catch (publicError) {
-      console.warn('Edição criada, mas a publicação pública falhou:', publicError);
-      watchEvent();
-      renderFilter();
-      switchTab('event');
-      notice('globalMsg',
-        `A edição foi criada, mas não foi publicada na página de inscrições. Verifique a permissão de escrita em ${root}/publicEvents. Detalhe: ${publicError.message}`,
-        true
-      );
-      return;
+    } catch (pubErr) {
+      console.warn('Falha na publicação inicial:', pubErr);
     }
 
     watchEvent();
-    renderFilter();
+    renderGlobalSelect();
     switchTab('event');
-    await log('Nova edição criada', `Edição criada com identificador ${id}`);
-    notice('globalMsg', 'Nova edição criada com sucesso. Preencha os dados e clique em “Salvar configurações”.');
+    await logAction('Nova edição criada', `Identificador: ${id}`);
+    notify('Nova edição criada! Preencha os dados e salve.');
+    $('edition').focus();
   } catch (err) {
-    console.error('Erro ao criar edição:', err);
-    notice('globalMsg',
-      `Não foi possível criar a edição no Firebase. ${err.code ? `Código: ${err.code}. ` : ''}${err.message || 'Erro desconhecido.'}`,
-      true
-    );
+    notify(`Erro ao criar edição: ${err.message}`, true);
   } finally {
-    button.disabled = false;
-    button.textContent = 'Nova edição';
+    btn.disabled = false;
+    btn.textContent = '+ Nova Edição';
   }
 };
 
-$('eventForm').onsubmit=async e=>{
+// Salvar Configurações da Edição
+$('eventForm').onsubmit = async e => {
   e.preventDefault();
-  const d={
-    edition:$('edition').value.trim(),
-    name:$('eventName').value.trim(),
-    date:$('date').value,
-    time:$('time').value.trim(),
-    place:$('place').value.trim(),
-    address:$('address').value.trim(),
-    description:$('description').value.trim(),
-    instructions:$('instructions').value.trim(),
-    initialSlots:Number($('initialSlots').value),
-    status:$('status').value,
-    updatedAt:Date.now()
+  if (!activeId) return notify('Crie ou selecione uma edição antes de salvar.', true);
+
+  const d = {
+    edition: $('edition').value.trim(),
+    name: $('eventName').value.trim(),
+    date: $('date').value,
+    time: $('time').value.trim(),
+    place: $('place').value.trim(),
+    address: $('address').value.trim(),
+    description: $('description').value.trim(),
+    instructions: $('instructions').value.trim(),
+    initialSlots: Number($('initialSlots').value),
+    status: $('status').value,
+    updatedAt: Date.now()
   };
-  if(!activeId){notice('eventMsg','Crie ou selecione uma edição antes de salvar.',true);return}
-  if(!d.edition||!d.name||d.initialSlots<0||!Number.isInteger(d.initialSlots)){notice('eventMsg','Confira os campos e a quantidade de vagas.',true);return}
-  try{
+
+  if (!d.edition || !d.name || d.initialSlots < 0 || !Number.isInteger(d.initialSlots)) {
+    return notify('Verifique os campos obrigatórios e o número de vagas.', true);
+  }
+
+  try {
     const currentCount = activePeopleCount();
-    const updatedPayload = {...eventData, ...d, registeredCount: currentCount};
-    await update(ref(db,`${root}/events/${activeId}`),{...d, registeredCount: currentCount});
-    await set(ref(db,`${root}/publicEvents/${activeId}`),publicData(updatedPayload, currentCount));
-    await log('Configurações do evento alteradas','Dados gerais e status atualizados');
-    notice('eventMsg','Configurações salvas. A página pública foi atualizada com sucesso.');
-  }catch(err){notice('eventMsg',err.message,true)}
+    const updatedPayload = { ...eventData, ...d, registeredCount: currentCount };
+    await update(ref(db, `${root}/events/${activeId}`), { ...d, registeredCount: currentCount });
+    await set(ref(db, `${root}/publicEvents/${activeId}`), publicData(updatedPayload, currentCount));
+    await logAction('Configurações atualizadas', `Edição ${d.edition} · Status: ${d.status === 'open' ? 'Abertas' : 'Encerradas'}`);
+    notify('Configurações salvas e publicadas com sucesso!');
+  } catch (err) {
+    notify(`Erro ao salvar: ${err.message}`, true);
+  }
 };
 
-$('addSlotsBtn').onclick=async()=>{
-  const q=Number($('extraSlots').value);
-  if(!Number.isInteger(q)||q<1){notice('eventMsg','Informe uma quantidade inteira maior que zero.',true);return}
-  try{
-    if(!activeId){notice('eventMsg','Crie ou selecione uma edição primeiro.',true);return}
-    const next=Number(eventData.extraSlots||0)+q;
-    const currentCount=activePeopleCount();
-    await update(ref(db,`${root}/events/${activeId}`),{extraSlots:next,registeredCount:currentCount,updatedAt:Date.now()});
-    await update(ref(db,`${root}/publicEvents/${activeId}`),{extraSlots:next,registeredCount:currentCount,updatedAt:Date.now()});
-    const id=push(ref(db,`${root}/events/${activeId}/slotHistory`)).key;
-    await set(ref(db,`${root}/events/${activeId}/slotHistory/${id}`),{quantity:q,at:Date.now(),by:'Administrador'});
-    await log('Vagas adicionadas',`${q} vagas`);
-    $('extraSlots').value='';
-    notice('eventMsg',`${q} vagas adicionadas com sucesso.`);
-  }catch(err){notice('eventMsg',err.message,true)}
+// Adicionar Vagas Extras
+$('addSlotsBtn').onclick = async () => {
+  const q = Number($('extraSlots').value);
+  if (!Number.isInteger(q) || q < 1) {
+    return notify('Informe uma quantidade inteira maior que zero.', true);
+  }
+  if (!activeId) return notify('Selecione uma edição primeiro.', true);
+
+  try {
+    const next = Number(eventData.extraSlots || 0) + q;
+    const currentCount = activePeopleCount();
+    await update(ref(db, `${root}/events/${activeId}`), { extraSlots: next, registeredCount: currentCount, updatedAt: Date.now() });
+    await update(ref(db, `${root}/publicEvents/${activeId}`), { extraSlots: next, registeredCount: currentCount, updatedAt: Date.now() });
+    
+    const slotId = push(ref(db, `${root}/events/${activeId}/slotHistory`)).key;
+    await set(ref(db, `${root}/events/${activeId}/slotHistory/${slotId}`), { quantity: q, at: Date.now(), by: 'Administrador' });
+    
+    await logAction('Vagas extras adicionadas', `+${q} vagas liberadas`);
+    $('extraSlots').value = '';
+    notify(`+${q} vagas adicionadas com sucesso!`);
+  } catch (err) {
+    notify(`Erro ao adicionar vagas: ${err.message}`, true);
+  }
 };
 
-$('search').oninput=renderPeople;
-function renderPeople(){
-  const q=$('search').value.toLocaleLowerCase('pt-BR');
-  const rows=Object.entries(people).filter(([id,p])=>`${p.name||''} ${p.cpf||''} ${p.protocol||''}`.toLocaleLowerCase('pt-BR').includes(q)).sort((a,b)=>(b[1].createdAt||0)-(a[1].createdAt||0));
-  $('peopleList').innerHTML=rows.map(([id,p])=>`<div class="card"><div class="row"><div><b>${esc(p.name)}</b><div class="muted">CPF: ${esc(p.cpf||'')} · ${esc(p.phone||'')}</div><div class="muted">Nascimento: ${esc(p.birthDate||'')} · Primeira vez: ${p.firstTime?'Sim':'Não'}</div><div class="muted">Inscrição: ${new Date(p.createdAt||0).toLocaleString('pt-BR')}</div><p>${esc(p.reason||'')}</p><span class="pill">${esc(p.protocol||id)}</span></div><div><button class="secondary" data-edit="${esc(id)}">Editar</button> <button class="danger" data-delete="${esc(id)}">Excluir</button></div></div></div>`).join('')||'<p class="muted">Nenhum participante encontrado.</p>';
+// Lista e Pesquisa de Participantes
+$('search').oninput = renderPeople;
+
+function renderPeople() {
+  const q = $('search').value.toLocaleLowerCase('pt-BR').trim();
+  const rows = Object.entries(people)
+    .filter(([, p]) => p && p.status !== 'cancelled')
+    .filter(([id, p]) => `${p.name || ''} ${p.cpf || ''} ${formatCpf(p.cpf)} ${p.protocol || id}`.toLocaleLowerCase('pt-BR').includes(q))
+    .sort((a, b) => (b[1].createdAt || 0) - (a[1].createdAt || 0));
+
+  $('peopleList').innerHTML = rows.length
+    ? rows.map(([id, p]) => `
+        <div class="item-card">
+          <div class="item-main">
+            <div class="item-title">
+              <span>${esc(p.name)}</span>
+              <span class="badge neutral">#${esc(p.protocol || id.slice(-6).toUpperCase())}</span>
+              ${p.firstTime ? '<span class="badge open">1ª vez</span>' : ''}
+            </div>
+            <div class="item-meta">
+              <strong>CPF:</strong> ${esc(formatCpf(p.cpf))} · 
+              <strong>Tel:</strong> ${esc(formatPhone(p.phone) || '—')} · 
+              <strong>Nasc:</strong> ${esc(formatDateBR(p.birthDate))}
+              <br>
+              <span style="font-size:12px;">Inscrito em ${new Date(p.createdAt || 0).toLocaleString('pt-BR')}</span>
+            </div>
+            ${p.reason ? `<div class="item-note"><strong>Motivo:</strong> ${esc(p.reason)}</div>` : ''}
+          </div>
+          <div class="actions no-print">
+            <button class="secondary sm" data-edit="${esc(id)}">Editar</button>
+            <button class="danger sm" data-delete="${esc(id)}">Remover</button>
+          </div>
+        </div>`).join('')
+    : `<p class="muted">${q ? 'Nenhum participante encontrado para esta busca.' : 'Ainda não há participantes inscritos nesta edição.'}</p>`;
 }
 
-$('peopleList').addEventListener('click',async e=>{
-  try {
-  const b=e.target.closest('button');if(!b)return;
-  const id=b.dataset.edit||b.dataset.delete,p=people[id];if(!p)return;
-  if(b.dataset.delete){
-    if(!confirm(`Excluir a inscrição de ${p.name}?`))return;
-    await remove(ref(db,`${root}/events/${activeId}/participants/${id}`));
-    await remove(ref(db,`${root}/registrations/${id}`));
-    const remaining={...people};delete remaining[id];
-    const newCount=activePeopleCount(remaining);
-    await update(ref(db,`${root}/events/${activeId}`),{registeredCount:newCount,updatedAt:Date.now()});
-    await update(ref(db,`${root}/publicEvents/${activeId}`),{registeredCount:newCount,updatedAt:Date.now()});
-    await log('Inscrição excluída',p.name);
+// Ações nos Participantes (Abrir Modal ou Excluir)
+$('peopleList').addEventListener('click', async e => {
+  const btn = e.target.closest('button');
+  if (!btn) return;
+  const id = btn.dataset.edit || btn.dataset.delete;
+  const p = people[id];
+  if (!p) return;
+
+  if (btn.dataset.delete) {
+    if (!confirm(`Remover a inscrição de "${p.name}"? A vaga voltará a ficar disponível.`)) return;
+    try {
+      await remove(ref(db, `${root}/events/${activeId}/participants/${id}`));
+      await remove(ref(db, `${root}/registrations/${id}`));
+      const remaining = { ...people };
+      delete remaining[id];
+      const newCount = activePeopleCount(remaining);
+      await update(ref(db, `${root}/events/${activeId}`), { registeredCount: newCount, updatedAt: Date.now() });
+      await update(ref(db, `${root}/publicEvents/${activeId}`), { registeredCount: newCount, updatedAt: Date.now() });
+      await logAction('Inscrição removida', p.name);
+      notify(`Inscrição de ${p.name} removida.`);
+    } catch (err) {
+      notify(`Erro ao remover: ${err.message}`, true);
+    }
     return;
   }
-  const name=prompt('Nome completo:',p.name);if(name===null)return;
-  const birthDate=prompt('Data de nascimento (AAAA-MM-DD):',p.birthDate||'');if(birthDate===null)return;
-  const cpfRaw=prompt('CPF (somente números ou formatado):',p.cpf||'');if(cpfRaw===null)return;
-  const cpf=cpfRaw.replace(/\D/g,'');if(!name.trim()){alert('Informe o nome completo.');return}if(!validCpf(cpf)){alert('CPF inválido.');return}
-  const phone=prompt('Telefone:',p.phone||'');if(phone===null)return;
-  const first=prompt('Primeira participação? Digite S para sim ou N para não:',p.firstTime?'S':'N');if(first===null)return;
-  const reason=prompt('Motivo da participação:',p.reason||'');if(reason===null)return;
-  
-  const updatedData={
-    name:name.trim(),
-    birthDate,
-    cpf,
-    phone:phone.trim(),
-    firstTime:first.trim().toUpperCase()==='S',
-    reason:reason.trim(),
-    updatedAt:Date.now()
-  };
-  
-  await update(ref(db,`${root}/events/${activeId}/participants/${id}`),updatedData);
-  const regSnap=await get(ref(db,`${root}/registrations/${id}`));
-  if(regSnap.exists()){
-    await update(ref(db,`${root}/registrations/${id}`),updatedData);
-  }
-  await log('Participante editado',p.name);
-  } catch(err) {
-    console.error('Erro ao atualizar participante:', err);
-    notice('globalMsg', `Não foi possível concluir a ação: ${err.message}`, true);
+
+  if (btn.dataset.edit) {
+    openEditModal(id, p);
   }
 });
 
-function csv(){
-  if(!activeId){notice('globalMsg','Selecione uma edição antes de exportar.',true);return}
-  const rows=[['Nome','Nascimento','CPF','Telefone','Primeira vez','Motivo','Protocolo','Data inscrição'],...Object.values(people).map(p=>[p.name,p.birthDate,p.cpf,p.phone,p.firstTime?'Sim':'Não',p.reason,p.protocol,new Date(p.createdAt).toLocaleString('pt-BR')])];
-  const blob=new Blob(['\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\r\n')],{type:'text/csv;charset=utf-8'});
-  const a=document.createElement('a');const url=URL.createObjectURL(blob);a.href=url;a.download=`inscritos-${activeId}.csv`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+// Controle do Modal de Edição de Participante
+function openEditModal(id, p) {
+  $('editPersonId').value = id;
+  $('editName').value = p.name || '';
+  $('editCpf').value = formatCpf(p.cpf || '');
+  $('editBirthDate').value = p.birthDate || '';
+  $('editPhone').value = formatPhone(p.phone || '');
+  $('editFirstTime').value = p.firstTime ? 'true' : 'false';
+  $('editReason').value = p.reason || '';
+  $('editPersonModal').classList.remove('hidden');
+  $('editName').focus();
 }
-$('csvBtn').onclick=csv;$('printBtn').onclick=()=>window.print();
 
-// Inicia o painel diretamente
+function closeEditModal() {
+  $('editPersonModal').classList.add('hidden');
+}
+
+$('closeModalBtn').onclick = closeEditModal;
+$('cancelModalBtn').onclick = closeEditModal;
+$('editPersonModal').onclick = e => {
+  if (e.target === $('editPersonModal')) closeEditModal();
+};
+
+$('editCpf').oninput = e => { e.target.value = formatCpf(e.target.value); };
+$('editPhone').oninput = e => { e.target.value = formatPhone(e.target.value); };
+
+$('editPersonForm').onsubmit = async e => {
+  e.preventDefault();
+  const id = $('editPersonId').value;
+  const name = $('editName').value.trim();
+  const cpf = $('editCpf').value.replace(/\D/g, '');
+  const birthDate = $('editBirthDate').value;
+  const phone = $('editPhone').value.trim();
+  const firstTime = $('editFirstTime').value === 'true';
+  const reason = $('editReason').value.trim();
+
+  if (!name) return notify('Informe o nome completo.', true);
+  if (!validCpf(cpf)) return notify('CPF inválido. Verifique os dígitos.', true);
+
+  const updatedData = {
+    name,
+    cpf,
+    birthDate,
+    phone,
+    firstTime,
+    reason,
+    updatedAt: Date.now()
+  };
+
+  try {
+    await update(ref(db, `${root}/events/${activeId}/participants/${id}`), updatedData);
+    const regSnap = await get(ref(db, `${root}/registrations/${id}`));
+    if (regSnap.exists()) {
+      await update(ref(db, `${root}/registrations/${id}`), updatedData);
+    }
+    await logAction('Participante atualizado', name);
+    closeEditModal();
+    notify('Dados do participante atualizados!');
+  } catch (err) {
+    notify(`Erro ao salvar alterações: ${err.message}`, true);
+  }
+};
+
+// Exportação CSV e Impressão
+$('csvBtn').onclick = () => {
+  if (!activeId) return notify('Selecione uma edição antes de exportar.', true);
+  const activeList = Object.entries(people).filter(([, p]) => p && p.status !== 'cancelled');
+  if (!activeList.length) return notify('Não há participantes para exportar.', true);
+
+  const rows = [
+    ['Nome Completo', 'CPF', 'Data Nascimento', 'Telefone', 'Primeira Vez', 'Motivo', 'Protocolo', 'Data Inscrição'],
+    ...activeList.map(([id, p]) => [
+      p.name,
+      formatCpf(p.cpf),
+      formatDateBR(p.birthDate),
+      formatPhone(p.phone),
+      p.firstTime ? 'Sim' : 'Não',
+      p.reason,
+      p.protocol || id,
+      new Date(p.createdAt || 0).toLocaleString('pt-BR')
+    ])
+  ];
+
+  const csvContent = '\ufeff' + rows.map(r => r.map(v => `"${String(v ?? '').replace(/"/g, '""')}"`).join(';')).join('\r\n');
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `inscritos-${(eventData.edition || 'roda-de-cura').replace(/\s+/g, '-')}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+};
+
+$('printBtn').onclick = () => window.print();
+
+// Inicializa o sistema
 subscribe();
 </script>
 </body>
